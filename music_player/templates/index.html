@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    
+<div class="container">
+    <div class="row">
+        {% for music in object_list %}
+        <div class="col-md-4">
+            <div class="card">
+                <img class="default_image" src="{{music.singer_image.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'artist' music.singer_name %}" class="artist-link">
+                            <h5 class="artist-title">{{ music.singer_name }}</h5>
+                        </a>
+                        <a href="delete/{{music.pk}}" class="btn btn-primary">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+        
+{% endblock %}
+    

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Post
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <form action="upload" method="post" enctype="multipart/form-data">
+                <label for="songName">Singer Name:</label>
+                <input type="text" name="name" required>
+                
+                <br><br>
+                {% csrf_token %}
+                <label for="songFile">Choose A Image Of Your Singer:</label>
+                <input type="file" name="image" required>
+                
+                <br><br>
+                
+                <input type="submit" value="Upload">
+            
+        </form>
+    </div>
+{% endblock %}
+    

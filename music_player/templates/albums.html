@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+{% if song %}
+playing {{song.song_name}}
+{% else %}
+{{name}}
+
+  
+{% endif %}
+  
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+  <div class="table-responsive">
+    <table class="table align-middle table-success table-striped">
+      <thead>
+        <tr>
+          <th>S.N</th>
+          <th>Song Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for album in Album %}
+        <tr class="align-middle">
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{album.song_name}}</td>
+          <td><i class="fa-regular fa-heart"></i></td>
+          <td><a href="{% url 'play' album.id %}">play</a></td>
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+  
+  {% if not song %}
+  <a href="/add">Add A New Song</a>
+  {% endif %}
+    
+</div>
+
+{% if song %}
+<div class="audio-container">
+  <audio autoplay loop controls>
+    <source src="/media/{{song.songs}}" type="audio/wav">
+  </audio>
+</div>
+{% endif %}
+<script>
+
+</script>
+
+{% endblock %}
